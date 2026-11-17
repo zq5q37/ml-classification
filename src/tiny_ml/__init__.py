@@ -18,11 +18,19 @@ def main() -> None:
     pipe = Pipeline([
         ("scaler", StandardScaler()),
         ("pca", PCA(n_components=5)),
-        ("svm", SVC()),
+        ("svm", SVC()), #"svm" is just a label you choose
     ])
 
+    # Debug statement to find what parameters to tune
+    print(SVC().get_params())
+
+    # For everything in pipe, gives valid keys for your grid.
+    print(pipe.get_params().keys())
+
     # 4. Dials to try for the SVM
-    grid = {"svm__C": [0.1, 1, 10]}
+    # The grid key is label__parameter (two underscores):
+    # "svm__C" means the C setting of the step labelled svm
+    grid = {"svm__C": [0.1, 1, 10]} # try these values
 
     # 5. Try each dial value with 5-fold cross-validation
     search = GridSearchCV(pipe, grid, cv=5)
