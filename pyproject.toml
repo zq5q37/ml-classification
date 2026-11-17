@@ -10,7 +10,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-ml-classification = "ml_classification:main"
+ml_classification = "ml_classification:main"
 tiny_ml = "tiny_ml:main"
 tiny_ml_2 = "tiny_ml_2:main"
 
